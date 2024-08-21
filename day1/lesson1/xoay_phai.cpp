@@ -2,6 +2,13 @@
 #include <fstream>
 using namespace std;
 
+/*
+    1. Tạo một mảng tạm thời chứa k phần tử đâu tiên
+    2. Dịch chuyển phần tử còn lại theo k lần
+    3. Copy từ temp sang arr
+    4. Xóa temp
+*/
+
 void rotateRight(int arr[], int n, int k) {
     // tao 1 mang tam thoi chua k phan tu dau tien
     int *temp = new int[k];
@@ -23,6 +30,27 @@ void rotateRight(int arr[], int n, int k) {
     // Xoa temp
     delete[] temp;
 }
+
+void rotateLeft(int arr[], int n, int k) {
+    int *temp = new int[k];
+    for (int i = 0; i < k; i++)
+    {
+        temp[i] = arr[i];
+    }
+    for (int i = 0; i < n-k; i++)
+    {
+        arr[i] = arr[k+i];
+    }
+    // [0,1,4,5]
+    for (int i = 0; i < n-k ; i++)
+    {
+        arr[n-k+i] = temp[i];
+    }
+
+    delete[] temp;
+    
+    
+}
 int main()
 {
     ifstream input("input.txt"); // Open input file for reading
@@ -41,13 +69,15 @@ int main()
     cout << k << endl;
     int count = 0;
     if(k>0) {
-        rotateRight(arr, n, k);
+        rotateLeft(arr, n, k);
     }
-    
+    cout << "\n Xoay phai\n";
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
+    
+    cout << "\n Xoay trai";
 
     return 0;
 }
