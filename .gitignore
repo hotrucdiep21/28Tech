@@ -1,2 +1,4 @@
 *.exe
 *.txt
+/Test/
+test.cpp
